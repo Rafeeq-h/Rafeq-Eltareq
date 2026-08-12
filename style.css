@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tarif', sans-serif;
+    font-family: 'Tajawal', sans-serif;
 }
 
 body {
@@ -28,13 +28,11 @@ nav {
     min-height: 70px;
 }
 
-/* عنوان رفيق الطريق */
 nav h2 {
     font-size: clamp(18px, 4vw, 25px);
     white-space: nowrap;
 }
 
-/* قائمة الـ Navigation */
 nav ul {
     list-style: none !important;
     padding: 0;
@@ -44,7 +42,6 @@ nav ul {
     align-items: center;
 }
 
-/* إزالة أي Bullets بشكل نهائي */
 nav ul li {
     list-style: none !important;
     margin: 0;
@@ -85,13 +82,11 @@ nav ul li a:hover {
     overflow: hidden;
 }
 
-/* النص */
 .hero-content {
     text-align: center;
     z-index: 3;
 }
 
-/* gif الكلب */
 .hero-video-left {
     position: absolute;
     left: 0;
@@ -109,7 +104,7 @@ nav ul li a:hover {
 }
 
 .hero p {
-    font-size: 1.0rem;
+    font-size: 1rem;
     max-width: 600px;
     color: #765d48;
 }
@@ -136,7 +131,10 @@ nav ul li a:hover {
     flex-wrap: wrap;
 }
 
+/* PDF Cards */
+
 .card {
+    display: block;
     background: #F3E0BC;
     padding: 30px;
     border-radius: 10px;
@@ -144,6 +142,10 @@ nav ul li a:hover {
     width: 300px;
     transition: transform 0.3s;
     cursor: pointer;
+
+    /* مهم لأن الكارت أصبح <a> */
+    text-decoration: none;
+    color: inherit;
 }
 
 .card:hover {
@@ -265,87 +267,6 @@ footer {
     color: #765d48;
     text-align: center;
     padding: 20px;
-}
-
-/* ========================================= */
-/* نافذة الـ PDF */
-/* ========================================= */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content {
-    background-color: #F3E0BC;
-    margin: 2% auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 900px;
-    border-radius: 10px;
-    position: relative;
-}
-
-.close-btn {
-    color: #765d48;
-    float: left;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s;
-    line-height: 1;
-}
-
-.close-btn:hover {
-    color: #e74c3c;
-}
-
-.pdf-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    background-color: #D3A468;
-    padding: 10px;
-    border-radius: 8px;
-    color: #765d48;
-    font-weight: bold;
-}
-
-.pdf-controls button {
-    background-color: #765d48;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Taref', sans-serif;
-    transition: background 0.3s;
-}
-
-.pdf-controls button:hover {
-    background-color: #554233;
-}
-
-.canvas-container {
-    text-align: center;
-    overflow-y: auto;
-    max-height: 70vh;
-}
-
-#pdf-render {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #765d48;
-    border-radius: 5px;
 }
 
 /* ========================================= */
