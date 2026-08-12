@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفيق الطريق - دليل التعامل الآمن مع الكلاب</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- إضافة خط عربي جميل من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/icon.png.jpeg">
+    <title>رفيق الطريق 🐾</title>
+    <!-- استدعاء مكتبة PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h2>رفيق الطريق 🐾</h2>
+            <ul>
+                <li><a href="#about">الرئيسية</a></li>
+                <li><a href="#safety">قواعد السلامة</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="hero">
+
+
+        <video class="hero-video-left" autoplay muted loop playsinline>
+            <source src="videos/dog.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-content">
+            <h2>معاً لبيئة آمنة للإنسان والحيوان</h2>
+
+            <p>
+                موقع يهدف إلى نشر الوعي حول كيفية التعامل الصحيح مع الكلاب،
+                وتجنب المخاطر، والتشجيع على الحلول السلمية بدلاً من الإيذاء.
+            </p>
+        </div>
+
+    </section>
+
+    <section id="safety" class="content-section">
+        <h2>كيف تحمي نفسك من مخاطر الكلاب</h2>
+    <div class="cards">
+    
+        <!-- الكارت الأول -->
+        <div class="card" onclick="openPDF('./pdfs/file1.pdf')">
+            <h3>أخطاء ممكن تضيع حياتك</h3>
+        </div>
+    
+        <!-- الكارت الثاني -->
+        <div class="card" onclick="openPDF('./pdfs/file2.pdf')">
+            <h3>علامات ممكن تنقذ حياتك</h3>
+        </div>
+    
+        <!-- الكارت الثالث -->
+        <div class="card" onclick="openPDF('pdfs/mistakes.pdf')">
+            <h3>الأخطاء الشائعة و حلولها</h3>
+        </div>
+    
+    </div>
+
+    </section>
+
+    <!--قسم تواصل معنا -->
+    <section id="contact" class="content-section">
+        <h2>تواصل معنا</h2>
+        <div class="contact-links-container">
+            <!-- الواتساب -->
+            <a href="https://wa.me/201274992478" target="_blank" class="social-btn whatsapp-btn">
+                تواصل عبر واتساب 💬
+            </a>
+            <!-- الفيسبوك -->
+            <a href="https://www.facebook.com/share/1DavHXcv5S/" target="_blank" class="social-btn facebook-btn">
+                صفحتنا على فيسبوك 📘
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>صُنع بحب من أجل مجتمع أكثر وعياً ورحمة. © 2026</p>
+    </footer>
+
+    <!-- النافذة المنبثقة لعرض الـ PDF (Modal) -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePDF()">&times;</span>
+
+            <div class="pdf-controls">
+                <button id="prev-page">السابق</button>
+                <span>صفحة <span id="page-num"></span> من <span id="page-count"></span></span>
+                <button id="next-page">التالي</button>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="pdf-render"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
