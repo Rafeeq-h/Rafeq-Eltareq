@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Tarif', sans-serif;
 }
 
 body {
@@ -64,6 +64,7 @@ nav ul li a:hover {
     color: #f1c40f;
 }
 
+
 /* ========================================= */
 /* Hero */
 /* ========================================= */
@@ -97,17 +98,18 @@ nav ul li a:hover {
 }
 
 .hero h2 {
-    font-size: clamp(20px, 5vw, 40px);
+    font-size: clamp(15px, 5vw, 30px);
     margin-bottom: 20px;
     color: #765d48;
     white-space: nowrap;
 }
 
 .hero p {
-    font-size: 1rem;
+    font-size: 1.0rem;
     max-width: 600px;
     color: #765d48;
 }
+
 
 /* ========================================= */
 /* Content */
@@ -131,10 +133,7 @@ nav ul li a:hover {
     flex-wrap: wrap;
 }
 
-/* PDF Cards */
-
 .card {
-    display: block;
     background: #F3E0BC;
     padding: 30px;
     border-radius: 10px;
@@ -142,10 +141,6 @@ nav ul li a:hover {
     width: 300px;
     transition: transform 0.3s;
     cursor: pointer;
-
-    /* مهم لأن الكارت أصبح <a> */
-    text-decoration: none;
-    color: inherit;
 }
 
 .card:hover {
@@ -156,6 +151,7 @@ nav ul li a:hover {
     color: #765d48;
     margin-bottom: 15px;
 }
+
 
 /* ========================================= */
 /* Dark Background */
@@ -169,6 +165,7 @@ nav ul li a:hover {
 .dark-bg h2 {
     color: white;
 }
+
 
 /* ========================================= */
 /* Resources */
@@ -197,6 +194,7 @@ nav ul li a:hover {
     margin: 15px 0;
 }
 
+
 /* ========================================= */
 /* Buttons */
 /* ========================================= */
@@ -215,6 +213,7 @@ nav ul li a:hover {
 .btn:hover {
     background-color: #2980b9;
 }
+
 
 /* ========================================= */
 /* أزرار التواصل المباشر */
@@ -258,6 +257,7 @@ nav ul li a:hover {
     transform: translateY(-5px);
 }
 
+
 /* ========================================= */
 /* Footer */
 /* ========================================= */
@@ -269,9 +269,97 @@ footer {
     padding: 20px;
 }
 
+
 /* ========================================= */
-/* Responsive Navbar */
+/* نافذة الـ PDF */
 /* ========================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+    padding: 15px;
+}
+
+.modal-content {
+    background-color: #F3E0BC;
+    margin: 2vh auto;
+    padding: 20px;
+    width: min(900px, 100%);
+    max-width: 900px;
+    max-height: 96vh;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.close-btn {
+    color: #765d48;
+    float: left;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.pdf-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    background-color: #D3A468;
+    padding: 10px;
+    border-radius: 8px;
+    color: #765d48;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.pdf-controls button {
+    background-color: #765d48;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Taref', sans-serif;
+    transition: background 0.3s;
+}
+
+.pdf-controls button:hover {
+    background-color: #554233;
+}
+
+.canvas-container {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(96vh - 130px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+#pdf-render {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid #765d48;
+    border-radius: 5px;
+}
 
 @media (max-width: 700px) {
 
@@ -321,7 +409,30 @@ footer {
         width: 150px;
         bottom: 10px;
     }
+
+    /* PDF على الموبايل */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 12px;
+    }
+
+    .pdf-controls {
+        gap: 8px;
+        padding: 8px;
+        flex-wrap: wrap;
+    }
+
+    .pdf-controls button {
+        padding: 7px 15px;
+        font-size: 14px;
+    }
+
+    .canvas-container {
+        max-height: 75vh;
+    }
 }
+
 
 @media (max-width: 450px) {
 
