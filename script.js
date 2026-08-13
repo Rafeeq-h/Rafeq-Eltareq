@@ -46,8 +46,11 @@ let pageNumIsPending = null;
 // تجهيز Canvas
 // ==========================================
 
-const canvas = document.getElementById('pdf-render');
-const ctx = canvas.getContext('2d');
+const canvas =
+    document.getElementById('pdf-render');
+
+const ctx =
+    canvas.getContext('2d');
 
 
 // ==========================================
@@ -63,7 +66,7 @@ function getPDFScale(page) {
         return 1;
     }
 
-    // المساحة المتاحة لعرض الـ PDF
+    // العرض المتاح للـ PDF
     const availableWidth =
         container.clientWidth - 4;
 
@@ -73,17 +76,16 @@ function getPDFScale(page) {
             scale: 1
         });
 
-    // حساب الـ Scale تلقائياً
+    // حساب Scale حسب مساحة النافذة
     const scale =
         availableWidth / baseViewport.width;
 
-    // منع الـ Scale من أن يكون صغير جداً
     return Math.max(scale, 0.1);
 }
 
 
 // ==========================================
-// رسم الصفحة
+// رسم الصفحة بدقة عالية
 // ==========================================
 
 function renderPage(num) {
@@ -94,65 +96,122 @@ function renderPage(num) {
 
     pdfDoc.getPage(num).then(page => {
 
-        // حساب الحجم المناسب للنافذة
-        const scale = getPDFScale(page);
+        // حساب حجم الصفحة المناسب
+        const scale =
+            getPDFScale(page);
 
         const viewport =
             page.getViewport({
                 scale: scale
             });
 
-        // تحديد حجم الـ Canvas الحقيقي
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
 
-        // جعل الـ Canvas متجاوباً
-        canvas.style.width = "100%";
-        canvas.style.height = "auto";
+        // ==========================================
+        // رفع دقة الـ Canvas
+        // ==========================================
+
+        const devicePixelRatio =
+            window.devicePixelRatio || 1;
+
+
+        // الحجم الحقيقي للـ Canvas
+        canvas.width =
+            Math.floor(
+                viewport.width *
+                devicePixelRatio
+            );
+
+        canvas.height =
+            Math.floor(
+                viewport.height *
+                devicePixelRatio
+            );
+
+
+        // الحجم الظاهر على الشاشة
+        canvas.style.width =
+            viewport.width + 'px';
+
+        canvas.style.height =
+            viewport.height + 'px';
+
+
+        // ==========================================
+        // إعداد الرسم بدقة عالية
+        // ==========================================
 
         const renderCtx = {
+
             canvasContext: ctx,
-            viewport: viewport
+
+            viewport: viewport,
+
+            transform:
+                devicePixelRatio !== 1
+                    ? [
+                        devicePixelRatio,
+                        0,
+                        0,
+                        devicePixelRatio,
+                        0,
+                        0
+                    ]
+                    : null
         };
 
+
+        // ==========================================
         // رسم الصفحة
-        page.render(renderCtx).promise.then(() => {
+        // ==========================================
 
-            pageIsRendering = false;
+        page.render(renderCtx).promise
 
-            // لو فيه صفحة مستنية الرسم
-            if (pageNumIsPending !== null) {
+            .then(() => {
 
-                renderPage(pageNumIsPending);
+                pageIsRendering = false;
 
-                pageNumIsPending = null;
-            }
 
-        }).catch(error => {
+                // لو فيه صفحة مستنية الرسم
+                if (pageNumIsPending !== null) {
+
+                    renderPage(
+                        pageNumIsPending
+                    );
+
+                    pageNumIsPending = null;
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "خطأ أثناء رسم الصفحة:",
+                    error
+                );
+
+                pageIsRendering = false;
+
+            });
+
+
+        // تحديث رقم الصفحة
+        document.getElementById(
+            'page-num'
+        ).textContent = num;
+
+    })
+
+        .catch(error => {
 
             console.error(
-                "خطأ أثناء رسم الصفحة:",
+                "خطأ أثناء الحصول على الصفحة:",
                 error
             );
 
             pageIsRendering = false;
 
         });
-
-        // تحديث رقم الصفحة
-        document.getElementById('page-num').textContent =
-            num;
-
-    }).catch(error => {
-
-        console.error(
-            "خطأ أثناء الحصول على الصفحة:",
-            error
-        );
-
-        pageIsRendering = false;
-
-    });
 }
 
 
@@ -178,40 +237,38 @@ function queueRenderPage(num) {
 // الصفحة السابقة
 // ==========================================
 
-document.getElementById('prev-page').addEventListener(
-    'click',
-    () => {
+document.getElementById(
+    'prev-page'
+).addEventListener('click', () => {
 
-        if (!pdfDoc) return;
+    if (!pdfDoc) return;
 
-        if (pageNum <= 1) return;
+    if (pageNum <= 1) return;
 
-        pageNum--;
+    pageNum--;
 
-        queueRenderPage(pageNum);
+    queueRenderPage(pageNum);
 
-    }
-);
+});
 
 
 // ==========================================
 // الصفحة التالية
 // ==========================================
 
-document.getElementById('next-page').addEventListener(
-    'click',
-    () => {
+document.getElementById(
+    'next-page'
+).addEventListener('click', () => {
 
-        if (!pdfDoc) return;
+    if (!pdfDoc) return;
 
-        if (pageNum >= pdfDoc.numPages) return;
+    if (pageNum >= pdfDoc.numPages) return;
 
-        pageNum++;
+    pageNum++;
 
-        queueRenderPage(pageNum);
+    queueRenderPage(pageNum);
 
-    }
-);
+});
 
 
 // ==========================================
@@ -223,15 +280,19 @@ function openPDF(pdfPath) {
     const modal =
         document.getElementById('pdfModal');
 
+
     // إظهار النافذة
     modal.style.display = 'block';
+
 
     // إعادة الصفحة إلى الأولى
     pageNum = 1;
 
+
     // تصفير حالة الرسم
     pageIsRendering = false;
     pageNumIsPending = null;
+
 
     // تنظيف الـ Canvas
     ctx.clearRect(
@@ -241,12 +302,16 @@ function openPDF(pdfPath) {
         canvas.height
     );
 
-    // إظهار حالة التحميل
-    document.getElementById('page-num').textContent =
-        '...';
 
-    document.getElementById('page-count').textContent =
-        '...';
+    // إظهار حالة التحميل
+    document.getElementById(
+        'page-num'
+    ).textContent = '...';
+
+    document.getElementById(
+        'page-count'
+    ).textContent = '...';
+
 
     // تحميل ملف PDF
     pdfjsLib.getDocument(pdfPath).promise
@@ -255,11 +320,13 @@ function openPDF(pdfPath) {
 
             pdfDoc = pdf;
 
-            // عدد صفحات الـ PDF
+
+            // عدد صفحات الـPDF
             document.getElementById(
                 'page-count'
             ).textContent =
                 pdfDoc.numPages;
+
 
             // رسم الصفحة الأولى
             renderPage(pageNum);
@@ -273,9 +340,11 @@ function openPDF(pdfPath) {
                 error
             );
 
+
             alert(
                 "عذراً، حدث خطأ أثناء تحميل الملف. تأكد من صحة مسار الملف."
             );
+
 
             closePDF();
 
@@ -292,8 +361,10 @@ function closePDF() {
     const modal =
         document.getElementById('pdfModal');
 
+
     // إخفاء النافذة
     modal.style.display = 'none';
+
 
     // تنظيف الـ Canvas
     ctx.clearRect(
@@ -303,17 +374,24 @@ function closePDF() {
         canvas.height
     );
 
+
     // إعادة القيم
     pdfDoc = null;
+
     pageNum = 1;
+
     pageIsRendering = false;
+
     pageNumIsPending = null;
 
-    document.getElementById('page-num').textContent =
-        '';
 
-    document.getElementById('page-count').textContent =
-        '';
+    document.getElementById(
+        'page-num'
+    ).textContent = '';
+
+    document.getElementById(
+        'page-count'
+    ).textContent = '';
 
 }
 
@@ -322,40 +400,48 @@ function closePDF() {
 // إغلاق PDF عند الضغط خارج النافذة
 // ==========================================
 
-window.addEventListener('click', (event) => {
-
-    const modal =
-        document.getElementById('pdfModal');
-
-    if (event.target === modal) {
-
-        closePDF();
-
-    }
-
-});
-
-
-// ==========================================
-// إغلاق PDF بزر ESC
-// ==========================================
-
-window.addEventListener('keydown', (event) => {
-
-    if (event.key === 'Escape') {
+window.addEventListener(
+    'click',
+    (event) => {
 
         const modal =
             document.getElementById('pdfModal');
 
-        if (modal.style.display === 'block') {
+
+        if (event.target === modal) {
 
             closePDF();
 
         }
 
     }
+);
 
-});
+
+// ==========================================
+// إغلاق PDF بزر ESC
+// ==========================================
+
+window.addEventListener(
+    'keydown',
+    (event) => {
+
+        if (event.key === 'Escape') {
+
+            const modal =
+                document.getElementById('pdfModal');
+
+
+            if (modal.style.display === 'block') {
+
+                closePDF();
+
+            }
+
+        }
+
+    }
+);
 
 
 // ==========================================
@@ -364,22 +450,25 @@ window.addEventListener('keydown', (event) => {
 
 let resizeTimeout;
 
-window.addEventListener('resize', () => {
+window.addEventListener(
+    'resize',
+    () => {
 
-    // لو مفيش PDF مفتوح
-    if (!pdfDoc) return;
+        if (!pdfDoc) return;
 
-    clearTimeout(resizeTimeout);
 
-    resizeTimeout = setTimeout(() => {
+        clearTimeout(resizeTimeout);
 
-        // إعادة رسم الصفحة بالحجم الجديد
-        if (!pageIsRendering) {
 
-            renderPage(pageNum);
+        resizeTimeout = setTimeout(() => {
 
-        }
+            if (!pageIsRendering) {
 
-    }, 200);
+                renderPage(pageNum);
 
-});
+            }
+
+        }, 200);
+
+    }
+);
