@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('fonts/Tarif-Arabic-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -71,7 +78,7 @@ nav ul li a:hover {
 
 .hero {
     background: linear-gradient(#F3E0BC), url('images/hero-bg.jpg') center/cover;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -88,13 +95,12 @@ nav ul li a:hover {
     z-index: 3;
 }
 
-.hero-video-left {
+.bottom-image {
     position: absolute;
+    bottom: 0;
     left: 0;
-    bottom: -40px;
-    transform: translateY(-50%);
-    width: 220px;
-    border-radius: 15px;
+    width: 170px;
+    height: auto;
 }
 
 .hero h2 {
@@ -108,6 +114,7 @@ nav ul li a:hover {
     font-size: 1.0rem;
     max-width: 600px;
     color: #765d48;
+    margin: 0 auto;
 }
 
 
@@ -124,6 +131,9 @@ nav ul li a:hover {
     font-size: 2.2rem;
     margin-bottom: 40px;
     color: #F3E0BC;
+    white-space: nowrap;
+    text-align: center;
+    font-size: clamp(24px, 4vw, 45px);
 }
 
 .cards {
