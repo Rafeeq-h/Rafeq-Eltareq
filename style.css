@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Tarif';
-    src: url('fonts/Tarif-Arabic-Bold.ttf') format('truetype');
-    font-weight: normal;
+    src: url('Fonts/Tarif-Arabic-Bold.ttf') format('truetype');
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -494,4 +494,12 @@ footer {
     .hero-video-left {
         width: 120px;
     }
+    @media (max-width: 600px) {
+            .sona {
+                padding: 40px 5px;
+                font-size: 12px;
+                justify-content: center;
+                text-align: center;
+            }
+        }
 }
