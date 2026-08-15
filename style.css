@@ -118,7 +118,8 @@ nav ul li a:hover {
 
 .hero p {
     font-size: 1.0rem;
-    max-width: 600px;
+    max-width: 500px;
+    min-width: 100px;
     color: #765d48;
     margin: 0 auto;
 }
@@ -290,6 +291,8 @@ footer {
     color: #D3A468;
     text-align: center;
     padding: 40px;
+    white-space: nowrap;
+    font-size: clamp(14px, 1.2vw, 20px);
 }
 
 
