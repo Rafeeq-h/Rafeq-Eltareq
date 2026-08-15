@@ -1,10 +1,16 @@
 @font-face {
-    font-family: 'MyFont';
+    font-family: 'Tarif';
     src: url('fonts/Tarif-Arabic-Bold.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tarif', sans-serif;
+}
 * {
     margin: 0;
     padding: 0;
@@ -99,7 +105,7 @@ nav ul li a:hover {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 170px;
+    width: 180px;
     height: auto;
 }
 
@@ -279,6 +285,13 @@ footer {
     padding: 20px;
 }
 
+.sona {
+    background-color:#765d48 ;
+    color: #D3A468;
+    text-align: center;
+    padding: 40px;
+}
+
 
 /* ========================================= */
 /* نافذة الـ PDF */
@@ -344,7 +357,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Taref', sans-serif;
+    font-family: 'Tarif', sans-serif;
     transition: background 0.3s;
 }
 
@@ -401,7 +414,7 @@ footer {
     }
 
     .hero {
-        min-height: 100vh;
+        min-height: 80vh;
         padding: 110px 15px 40px;
     }
 
