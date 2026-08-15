@@ -287,15 +287,15 @@ footer {
 }
 
 .sona {
-    background-color:#765d48 ;
+    background-color: #765d48;
     color: #D3A468;
     text-align: center;
-    padding: 40px;
+    padding: 40px 10px;
     white-space: nowrap;
-    font-size: clamp(14px, 1.2vw, 20px);
+    font-size: clamp(12px, 1.2vw, 20px);
+    width: 100%;
+    box-sizing: border-box;
 }
-
-
 /* ========================================= */
 /* نافذة الـ PDF */
 /* ========================================= */
@@ -384,6 +384,12 @@ footer {
     margin: 0 auto;
     border: 1px solid #765d48;
     border-radius: 5px;
+}
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 @media (max-width: 700px) {

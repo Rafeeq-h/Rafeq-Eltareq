@@ -9,16 +9,75 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <link href= rel = "stylesheet">
-
     <link rel="icon" type="image/png" href="images/icon.png.jpeg">
 
     <!-- استدعاء مكتبة PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- تعديلات خاصة بالموبايل -->
+    <style>
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 600px) {
+
+            /* Navbar */
+            header,
+            nav {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            nav {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            nav h2 {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            nav ul li {
+                white-space: nowrap;
+                flex-shrink: 1;
+            }
+
+            nav ul li a {
+                white-space: nowrap;
+            }
+
+            /* جملة صنع بحب */
+            .sona {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                white-space: nowrap;
+                padding: 40px 5px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- Navbar -->
     <header>
         <nav>
             <h2>رفيق الطريق 🐾</h2>
@@ -31,6 +90,8 @@
         </nav>
     </header>
 
+
+    <!-- القسم الرئيسي -->
     <section id="about" class="hero">
 
         <img src="images/Mohanad.nice.jpeg" class="bottom-image">
@@ -40,7 +101,7 @@
             <h2>معاً لبيئة آمنة للإنسان والحيوان</h2>
 
             <p>
-                 موقع يهدف إلى نشر الوعي حول كيفية التعامل الصحيح مع الكلاب،
+                موقع يهدف إلى نشر الوعي حول كيفية التعامل الصحيح مع الكلاب،
                 وتجنب المخاطر، والتشجيع على الحلول السلمية بدلاً من الإيذاء.
             </p>
 
@@ -48,6 +109,8 @@
 
     </section>
 
+
+    <!-- قسم قواعد السلامة -->
     <section id="safety" class="content-section">
 
         <h2>كيف تحمي نفسك من مخاطر الكلاب</h2>
@@ -59,7 +122,7 @@
                 <h3>أخطاء ممكن تضيع حياتك</h3>
             </div>
 
-            <!--  الثاني -->
+            <!-- الثاني -->
             <div class="card" onclick="openPDF('./pdfs/file2.pdf')">
                 <h3>علامات ممكن تنقذ حياتك</h3>
             </div>
@@ -72,6 +135,7 @@
         </div>
 
     </section>
+
 
     <!-- قسم تواصل معنا -->
     <section id="contact" class="content-section">
@@ -92,12 +156,17 @@
 
         </div>
 
-        <footer class = "sona">صُنع بحب من أجل مجتمع أكثر وعياً و رحمة. © 2026</footer>
+        <!-- صنع بحب -->
+        <footer class="sona">
+            صُنع بحب من أجل مجتمع أكثر وعياً و رحمة. © 2026
+        </footer>
 
     </section>
 
+
+    <!-- Footer -->
     <footer>
-        <p>تحت رعاية مديرية الشباب و الرياضة</p>
+        <p>تحت رعاية مديرية الشباب و الرياضة ببورسعيد</p>
     </footer>
 
 
@@ -131,6 +200,8 @@
 
     </div>
 
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
