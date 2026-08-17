@@ -11,12 +11,6 @@
     box-sizing: border-box;
     font-family: 'Tarif', sans-serif;
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Tarif', sans-serif;
-}
 
 body {
     line-height: 1.6;
@@ -135,7 +129,6 @@ nav ul li a:hover {
 }
 
 .content-section h2 {
-    font-size: 2.2rem;
     margin-bottom: 40px;
     color: #F3E0BC;
     white-space: nowrap;
@@ -296,6 +289,8 @@ footer {
     width: 100%;
     box-sizing: border-box;
 }
+
+
 /* ========================================= */
 /* نافذة الـ PDF */
 /* ========================================= */
@@ -385,12 +380,23 @@ footer {
     border: 1px solid #765d48;
     border-radius: 5px;
 }
+
+
+/* ========================================= */
+/* منع خروج الصفحة من الشاشة */
+/* ========================================= */
+
 html,
 body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
 }
+
+
+/* ========================================= */
+/* الموبايل */
+/* ========================================= */
 
 @media (max-width: 700px) {
 
@@ -422,6 +428,7 @@ body {
         white-space: nowrap;
     }
 
+
     .hero {
         min-height: 80vh;
         padding: 110px 15px 40px;
@@ -441,7 +448,50 @@ body {
         bottom: 10px;
     }
 
+
+    /* ========================================= */
+    /* إصلاح عنوان قسم قواعد السلامة */
+    /* ========================================= */
+
+    .content-section h2 {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+
+        font-size: clamp(18px, 6vw, 45px);
+
+        white-space: nowrap;
+        word-break: normal;
+
+        text-align: center;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        padding: 0 5px;
+    }
+
+
+    /* ========================================= */
+    /* صنع بحب */
+    /* ========================================= */
+
+    .sona {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+
+        padding: 40px 5px;
+
+        font-size: 12px;
+
+        text-align: center;
+        white-space: nowrap;
+    }
+
+
     /* PDF على الموبايل */
+
     .modal-content {
         width: 95%;
         margin: 5% auto;
@@ -465,6 +515,10 @@ body {
 }
 
 
+/* ========================================= */
+/* الشاشات الصغيرة جدًا */
+/* ========================================= */
+
 @media (max-width: 450px) {
 
     nav {
@@ -484,6 +538,7 @@ body {
         font-size: 11px;
     }
 
+
     .hero {
         padding-top: 100px;
     }
@@ -500,12 +555,29 @@ body {
     .hero-video-left {
         width: 120px;
     }
-    @media (max-width: 600px) {
-            .sona {
-                padding: 40px 5px;
-                font-size: 12px;
-                justify-content: center;
-                text-align: center;
-            }
-        }
+
+
+    /* عنوان قواعد السلامة على الشاشات الصغيرة جدًا */
+
+    .content-section h2 {
+            font-size: clamp(16px, 5vw, 36px);
+            white-space: nowrap;
+            text-align: center;
+            width: 100%;
+            padding: 0;
+    }
+
+
+    .sona {
+        padding: 40px 5px;
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+    }
+}
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
