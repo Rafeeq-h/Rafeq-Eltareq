@@ -133,7 +133,7 @@ nav ul li a:hover {
     color: #F3E0BC;
     white-space: nowrap;
     text-align: center;
-    font-size: clamp(24px, 4vw, 45px);
+    font-size: clamp(22px, 1.43vw, 36px);
 }
 
 .cards {
@@ -485,7 +485,7 @@ body {
         max-width: 100%;
         box-sizing: border-box;
 
-        font-size: clamp(18px, 6vw, 45px);
+        font-size: clamp(18px, 5vw, 26px);
 
         white-space: nowrap;
         word-break: normal;
