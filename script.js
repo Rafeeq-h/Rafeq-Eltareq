@@ -52,6 +52,16 @@ const canvas =
 const ctx =
     canvas.getContext('2d');
 
+// ==========================================
+// عناصر Loading
+// ==========================================
+
+const pdfLoading =
+    document.getElementById('pdf-loading');
+
+const pdfLoadingVideo =
+    document.getElementById('pdf-loading-video');
+
 
 // ==========================================
 // حساب حجم PDF تلقائياً
@@ -170,6 +180,15 @@ function renderPage(num) {
 
                 pageIsRendering = false;
 
+                // إخفاء Loading بعد اكتمال رسم الصفحة الأولى
+                if (num === 1) {
+
+                    pdfLoading.style.display = 'none';
+
+                    pdfLoadingVideo.pause();
+
+                }
+
 
                 // لو فيه صفحة مستنية الرسم
                 if (pageNumIsPending !== null) {
@@ -283,6 +302,13 @@ function openPDF(pdfPath) {
 
     // إظهار النافذة
     modal.style.display = 'block';
+
+    // إظهار Loading
+    pdfLoading.style.display = 'block';
+
+    // تشغيل الفيديو من البداية
+    pdfLoadingVideo.currentTime = 0;
+    pdfLoadingVideo.play().catch(() => { });
 
 
     // إعادة الصفحة إلى الأولى

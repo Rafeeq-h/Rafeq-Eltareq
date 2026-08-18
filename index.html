@@ -136,9 +136,17 @@ https://www.googletagmanager.com/gtag/js?id=G-VTMR5VRSXC
     <div id="pdfModal" class="modal">
 
         <div class="modal-content">
-
+        
             <span class="close-btn" onclick="closePDF()">&times;</span>
-
+        
+            <!-- فيديو تحميل الـ PDF -->
+            <div id="pdf-loading" class="pdf-loading">
+                <video id="pdf-loading-video" autoplay muted loop playsinline>
+                    <source src="./videos/loading.mp4" type="video/mp4">
+                </video>
+        
+                <p>جاري تحميل الملف...</p>
+            </div>
             <div class="pdf-controls">
 
                 <button id="prev-page">السابق</button>

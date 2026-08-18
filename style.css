@@ -381,6 +381,33 @@ footer {
     border-radius: 5px;
 }
 
+/* ==========================================
+   Loading PDF
+========================================== */
+
+.pdf-loading {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.pdf-loading video {
+    width: 150px;
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+
+.pdf-loading p {
+    margin: 0;
+    color: #765d48;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 
 /* ========================================= */
 /* منع خروج الصفحة من الشاشة */
